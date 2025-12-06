@@ -3,7 +3,7 @@ import { envConf } from "./config/env.conf";
 
 function bootstrap() {
   Bun.serve({
-    port: envConf.PORT,
+    port: envConf.APP_PORT,
     fetch: app.fetch,
   });
 }
