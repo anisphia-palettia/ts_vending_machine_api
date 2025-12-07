@@ -10,12 +10,6 @@ const honoFactory = createFactory<Env>({
   initApp: async (app) => {
     console.log("Initializing Hono app...");
     console.log(`Server started on port ${envConf.APP_PORT}`);
-
-    app.get("/", (c) =>
-      api_response.success(c, {
-        message: "Welcome to the vending machine API!",
-      }),
-    );
   },
 });
 

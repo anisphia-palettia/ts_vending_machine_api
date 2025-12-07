@@ -19,3 +19,14 @@ model Admin {
 
   @@map("admins")
 }
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique @map("slug") @db.VarChar(100)
+  name      String   @map("name") @db.VarChar(100)
+  price     Float    @map("price")
+  quantity  Int      @map("quantity")
+  image     String   @map("image") @db.VarChar(255)
+
+  @@map("products")
+}
