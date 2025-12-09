@@ -37,37 +37,14 @@ productHandler.post(
 );
 
 productHandler.put(
-  "/:id/quantity",
-  zodValidator("param", productIdParamSchema),
-  zodValidator("json", productUpdateQuantityInputSchema),
-  async (c) => {
-    const param = c.req.valid("param");
-    const data = c.req.valid("json");
-
-    const product = await productService.findById(param.id);
-
-    if (!product) {
-      throw new HTTPException(404, {
-        message: "Product not found",
-      });
-    }
-
-    await productService.updateQuantity(param.id, data.quantity);
-
-    return api_response.success(c, {
-      message: "Product quantity updated successfully",
-      data: product,
-    });
-  },
-);
-
-productHandler.put(
   "/:id",
   zodValidator("param", productIdParamSchema),
   zodValidator("form", productUpdateInputSchema),
   async (c) => {
     const param = c.req.valid("param");
     const data = c.req.valid("form");
+
+    console.log(data);
 
     const old = await productService.findById(param.id);
 
@@ -99,6 +76,31 @@ productHandler.put(
 
     return api_response.success(c, {
       message: "Product updated successfully",
+      data: product,
+    });
+  },
+);
+
+productHandler.put(
+  "/:id/quantity",
+  zodValidator("param", productIdParamSchema),
+  zodValidator("json", productUpdateQuantityInputSchema),
+  async (c) => {
+    const param = c.req.valid("param");
+    const data = c.req.valid("json");
+
+    const product = await productService.findById(param.id);
+
+    if (!product) {
+      throw new HTTPException(404, {
+        message: "Product not found",
+      });
+    }
+
+    await productService.updateQuantity(param.id, data.quantity);
+
+    return api_response.success(c, {
+      message: "Product quantity updated successfully",
       data: product,
     });
   },
