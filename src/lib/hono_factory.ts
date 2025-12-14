@@ -6,11 +6,6 @@ type Env = {
   Variables: {};
 };
 
-const honoFactory = createFactory<Env>({
-  initApp: async (app) => {
-    console.log("Initializing Hono app...");
-    console.log(`Server started on port ${envConf.APP_PORT}`);
-  },
-});
+const honoFactory = createFactory<Env>({});
 
 export default honoFactory;

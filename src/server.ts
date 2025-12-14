@@ -6,6 +6,8 @@ function bootstrap() {
     port: envConf.APP_PORT,
     fetch: app.fetch,
   });
+  console.log("Initializing Hono app...");
+  console.log(`Server started on port ${envConf.APP_PORT}`);
 }
 
 bootstrap();

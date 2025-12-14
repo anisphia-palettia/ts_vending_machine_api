@@ -18,6 +18,8 @@
     "zod": "^4.1.13"
   },
   "scripts": {
-    "dev": "bun run src/server.ts"
+    "dev": "bun run src/server.ts",
+    "build:ts": "bun build.ts",
+    "start": "bun run dist/server.js"
   }
 }
