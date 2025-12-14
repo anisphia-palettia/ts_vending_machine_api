@@ -106,6 +106,29 @@ productHandler.put(
   },
 );
 
+productHandler.delete(
+  "/:id",
+  zodValidator("param", productIdParamSchema),
+  async (c) => {
+    const param = c.req.valid("param");
+
+    const product = await productService.findById(param.id);
+
+    if (!product) {
+      throw new HTTPException(404, {
+        message: "Product not found",
+      });
+    }
+
+    await productService.remove(param.id);
+
+    return api_response.success(c, {
+      message: "Product deleted successfully",
+      data: product,
+    });
+  },
+);
+
 productHandler.get("/", async (c) => {
   const products = await productService.findAll();
 
